@@ -1,0 +1,50 @@
+#!/bin/bash
+
+# Run Genshin Impact game through Steam Proton
+
+CMD="$1"
+
+GAMEPATH="/run/media/ruut/data/games/Genshin Impact/Genshin Impact game"
+# GAMEPATH="/run/media/ruut/data/games/Genshin Impact"
+# PREFIX="/run/media/ruut/648e4fce-b323-485f-8258-92f1b497754e/SteamLibrary/steamapps/compatdata/109600"
+# PREFIX="/home/ruut/.local/share/Steam/steamapps/compatdata/985830"
+PREFIX="/home/ruut/.local/share/Steam/steamapps/compatdata/0"
+# PREFIX="/run/media/ruut/data/games/genshin_impact_pfx_proton_7.0"
+# PROTONPATH="/home/ruut/.local/share/Steam/steamapps/common/Proton 7.0"
+PROTONPATH="/home/ruut/.local/share/Steam/steamapps/common/Proton 6.3"
+# PROTONPATH="/home/ruut/.local/share/Steam/steamapps/common/Proton - Experimental"
+# PROTONPATH="/home/ruut/.local/share/Steam/steamapps/common/Proton 5.13"
+# PROTONPATH="/home/ruut/.local/share/Steam/steamapps/common/Proton 4.2"
+# LANG=ru_RU.UTF-8
+# LANG=en_US.UTF-8
+
+if [ "$CMD" == "g" ]; then
+  cd "$GAMEPATH" && LANG=ru_RU.UTF-8 STEAM_COMPAT_CLIENT_INSTALL_PATH="$HOME/.steam/steam" STEAM_COMPAT_DATA_PATH="$PREFIX" WINEPREFIX="$PREFIX/pfx" python3 "$PROTONPATH/proton" run "$GAMEPATH/launcher.bat"
+
+  exit 0;
+fi
+if [ "$CMD" == "g2" ]; then
+  cd "$GAMEPATH" && LANG=ru_RU.UTF-8 STEAM_COMPAT_CLIENT_INSTALL_PATH="$HOME/.steam/steam" STEAM_COMPAT_DATA_PATH="$PREFIX" WINEPREFIX="$PREFIX/pfx" python3 "$PROTONPATH/proton" run "$GAMEPATH/GenshinImpact.exe"
+
+  exit 0;
+fi
+
+if [ "$CMD" == "t" ]; then
+  cd "$GAMEPATH" && LANG=ru_RU.UTF-8 STEAM_COMPAT_CLIENT_INSTALL_PATH="$HOME/.steam/steam" STEAM_COMPAT_DATA_PATH="$PREFIX" WINEPREFIX="$PREFIX/pfx" winetricks
+
+  exit 0;
+fi
+
+if [ "$CMD" == "c" ]; then
+  cd "$GAMEPATH" && LANG=ru_RU.UTF-8 STEAM_COMPAT_CLIENT_INSTALL_PATH="$HOME/.steam/steam" STEAM_COMPAT_DATA_PATH="$PREFIX" WINEPREFIX="$PREFIX/pfx" winecfg
+
+  exit 0;
+fi
+
+if [ "$CMD" == "l" ]; then
+  cd "$GAMEPATH" && LANG=ru_RU.UTF-8 STEAM_COMPAT_CLIENT_INSTALL_PATH="$HOME/.steam/steam" STEAM_COMPAT_DATA_PATH="$PREFIX" WINEPREFIX="$PREFIX/pfx" python3 "$PROTONPATH/proton" run "/run/media/ruut/data/games/Genshin Impact/launcher.exe"
+
+  exit 0;
+fi
+
+cd "$GAMEPATH" && LANG=ru_RU.UTF-8 STEAM_COMPAT_CLIENT_INSTALL_PATH="$HOME/.steam/steam" STEAM_COMPAT_DATA_PATH="$PREFIX" WINEPREFIX="$PREFIX/pfx" python3 "$PROTONPATH/proton" run "$GAMEPATH/launcher.bat"

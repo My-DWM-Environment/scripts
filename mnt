@@ -1,0 +1,67 @@
+#!/bin/perl
+
+# Script for simply mount for rw with access for curren non-root user
+# Example: mnt sdc1
+# Describe: this mount /dev/sdc1 on /run/media/${username}/sdc1
+
+use strict;
+use Data::Dumper qw(Dumper);
+
+my $username = $ENV{LOGNAME} || $ENV{USER} || getpwuid($<);
+my $basePath = $ENV{MNT_BASE_PATH} || "/run/media/${username}";
+my $remount = 0;
+my $umount = 0;
+my $dev = "";
+my $dst = "";
+
+if ($ARGV[0] eq "-r") {
+  $remount = 1;
+
+  $dev = $ARGV[1];
+  $dst = $ARGV[2];
+} elsif ($ARGV[0] eq "-u") {
+  $umount = 1;
+
+  $dev = $ARGV[1];
+  $dst = $ARGV[2];
+} else {
+  $dev = $ARGV[0];
+  $dst = $ARGV[1];
+}
+
+my $fullPath = $basePath;
+
+if ($dst eq "") {
+  $fullPath = "${basePath}/${dev}";
+} else {
+  $fullPath = "${basePath}/${dst}";
+}
+
+if ($remount == 1) {
+  my $id = "/dev/${dev}";
+
+  if ($dev eq "") {
+    $id = $fullPath;
+  }
+
+  printf("Remount device by: %s\n", $id);
+
+  system("sudo umount ${id}");
+  system("sudo mount -o uid=${username},gid=${username},fmask=113,dmask=002 /dev/${dev} ${fullPath}");
+} elsif ($umount == 1) {
+  my $id = "/dev/${dev}";
+
+  if ($dev eq "") {
+    $id = $fullPath;
+  }
+
+  printf("Umount device by: %s\n", $id);
+
+  system("sudo umount ${id}");
+} else {
+  printf("Mount dev: /dev/%s on: %s\n", $dev, $fullPath);
+  system("sudo mkdir -p ${fullPath}");
+  system("sudo mount -o uid=${username},gid=${username},fmask=113,dmask=002 /dev/${dev} ${fullPath}");
+}
+
+
