@@ -1,10 +1,10 @@
 #!/bin/bash
 
-# Run Genshin Impact game through Steam Proton
-
 CMD="$1"
 
-GAMEPATH="/run/media/ruut/data/games/Genshin Impact/Genshin Impact game"
+BASEPATH="/run/media/ruut/99c9b836-a7b8-403c-9ef8-5bfc1e1ec831/games/Genshin Impact"
+GAMEPATH="$BASEPATH/Genshin Impact game"
+# GAMEPATH="/run/media/ruut/data/games/Genshin Impact/Genshin Impact game"
 # GAMEPATH="/run/media/ruut/data/games/Genshin Impact"
 # PREFIX="/run/media/ruut/648e4fce-b323-485f-8258-92f1b497754e/SteamLibrary/steamapps/compatdata/109600"
 # PREFIX="/home/ruut/.local/share/Steam/steamapps/compatdata/985830"
@@ -42,7 +42,13 @@ if [ "$CMD" == "c" ]; then
 fi
 
 if [ "$CMD" == "l" ]; then
-  cd "$GAMEPATH" && LANG=ru_RU.UTF-8 STEAM_COMPAT_CLIENT_INSTALL_PATH="$HOME/.steam/steam" STEAM_COMPAT_DATA_PATH="$PREFIX" WINEPREFIX="$PREFIX/pfx" python3 "$PROTONPATH/proton" run "/run/media/ruut/data/games/Genshin Impact/launcher.exe"
+  cd "$GAMEPATH" && LANG=ru_RU.UTF-8 STEAM_COMPAT_CLIENT_INSTALL_PATH="$HOME/.steam/steam" STEAM_COMPAT_DATA_PATH="$PREFIX" WINEPREFIX="$PREFIX/pfx" python3 "$PROTONPATH/proton" run "$BASEPATH/launcher.exe"
+
+  exit 0;
+fi
+
+if [ "$CMD" == "el" ]; then
+  cd "$GAMEPATH" && LANG=ru_RU.UTF-8 STEAM_COMPAT_CLIENT_INSTALL_PATH="$HOME/.steam/steam" STEAM_COMPAT_DATA_PATH="$PREFIX" WINEPREFIX="$PREFIX/pfx" python3 "$PROTONPATH/proton" run "$BASEPATH/launcher_epic.exe"
 
   exit 0;
 fi
