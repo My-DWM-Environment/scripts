@@ -24,6 +24,8 @@ install:
 	chmod +x $(DEST_DIR)/watch_disks.sh
 	cp -rf watch_swaps.sh $(DEST_DIR)
 	chmod +x $(DEST_DIR)/watch_swaps.sh
+	cp -rf meet $(DEST_DIR)
+	chmod +x $(DEST_DIR)/meet
 
 uninstall:
 	rm -rf $(DEST_DIR)/click
@@ -36,3 +38,4 @@ uninstall:
 	rm -rf $(DEST_DIR)/wallpaper.sh
 	rm -rf $(DEST_DIR)/watch_disks.sh
 	rm -rf $(DEST_DIR)/watch_swaps.sh
+	rm -rf $(DEST_DIR)/meet

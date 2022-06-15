@@ -1,0 +1,15 @@
+#!/bin/bash
+
+VALUE=`xclip -o`;
+
+echo "VALUE: $VALUE";
+
+if [[ $VALUE == meet.google.com* ]]; then
+  google-chrome-stable --app=https://$VALUE;
+  exit 0;
+fi
+
+if [[ $VALUE == http* ]]; then
+  google-chrome-stable --app=$VALUE;
+  exit 0;
+fi
