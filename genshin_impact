@@ -2,7 +2,7 @@
 
 CMD="$1"
 
-BASEPATH="/run/media/ruut/99c9b836-a7b8-403c-9ef8-5bfc1e1ec831/games/Genshin Impact"
+BASEPATH="/run/media/ruut/99c9b836-a7b8-403c-9ef8-5bfc1e1ec831/games/GenshinImpact"
 GAMEPATH="$BASEPATH/Genshin Impact game"
 # GAMEPATH="/run/media/ruut/data/games/Genshin Impact/Genshin Impact game"
 # GAMEPATH="/run/media/ruut/data/games/Genshin Impact"
