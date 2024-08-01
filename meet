@@ -13,3 +13,8 @@ if [[ $VALUE == http* ]]; then
   google-chrome-stable --app=$VALUE;
   exit 0;
 fi
+
+if [[ $VALUE == file:* ]]; then
+  google-chrome-stable --app=$VALUE;
+  exit 0;
+fi
