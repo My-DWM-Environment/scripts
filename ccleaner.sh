@@ -16,3 +16,6 @@ while IFS= read -r line; do
   echo "rm: $line";
   sudo bash -c "rm -rf $line &";
 done <<< "$LIST"
+
+sudo docker system prune;
+sudo systemctl restart docker;
