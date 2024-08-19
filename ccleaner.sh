@@ -17,5 +17,8 @@ while IFS= read -r line; do
   sudo bash -c "rm -rf $line &";
 done <<< "$LIST"
 
-sudo docker system prune;
+sudo docker system prune -f;
+sudo systemctl restart docker;
+
+sudo mkdir -p /var/lib/docker/overlay2/l
 sudo systemctl restart docker;
